@@ -2,8 +2,7 @@ import { createServerClient, createBrowserClient } from '@supabase/ssr'
 import { cookies } from 'next/headers'
 
 // ---- Server Client (reads session from cookies) ----
-// Import this ONLY in: Server Components, API routes, middleware
-// Never import in 'use client' components
+// Import ONLY in: Server Components, API routes, middleware
 export async function createSupabaseServerClient() {
   const cookieStore = await cookies()
   return createServerClient(
@@ -15,7 +14,7 @@ export async function createSupabaseServerClient() {
         setAll(cookiesToSet: { name: string; value: string; options?: Record<string, unknown> }[]) {
           try {
             cookiesToSet.forEach(({ name, value, options }) =>
-              cookieStore.set(name, value, options)
+              cookieStore.set(name, value, options as Parameters<typeof cookieStore.set>[2])
             )
           } catch {
             // Ignore: called from Server Component
