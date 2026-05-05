@@ -1,0 +1,194 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================================
+   AgoveerChinta — Global Styles
+   Newspaper aesthetic with Bengali typography
+   ============================================================ */
+
+@layer base {
+  :root {
+    --color-ink:        #1a1a1a;
+    --color-ink-light:  #333333;
+    --color-ink-muted:  #666666;
+    --color-paper:      #faf8f4;
+    --color-paper-dark: #f0ede6;
+    --color-accent:     #c0392b;
+    --color-divider:    #d4cec4;
+    --color-border:     #e2ddd7;
+  }
+
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--color-paper);
+    color: var(--color-ink);
+    font-family: var(--font-hind-siliguri), 'Noto Sans Bengali', sans-serif;
+    font-size: 1rem;
+    line-height: 1.7;
+  }
+
+  /* Default heading font — Bengali serif for editorial feel */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-noto-serif-bengali), 'Noto Serif Bengali', serif;
+    color: var(--color-ink);
+    line-height: 1.25;
+  }
+
+  /* Smooth link transitions */
+  a {
+    transition: color 0.15s ease;
+  }
+
+  /* Bengali text needs slightly more line height */
+  p, li, td, th {
+    font-family: var(--font-hind-siliguri), 'Hind Siliguri', sans-serif;
+  }
+}
+
+@layer components {
+  /* ---- Newspaper column rule divider ---- */
+  .col-rule {
+    border-right: 1px solid var(--color-divider);
+  }
+
+  /* ---- Category badge ---- */
+  .category-badge {
+    @apply inline-flex items-center text-xs font-semibold uppercase tracking-wider 
+           px-2.5 py-0.5 rounded-sm;
+    font-family: var(--font-hind-siliguri), sans-serif;
+    letter-spacing: 0.08em;
+  }
+
+  /* ---- Post card hover effect ---- */
+  .post-card {
+    @apply transition-all duration-200;
+  }
+  .post-card:hover {
+    @apply shadow-card-hover;
+  }
+  .post-card:hover .post-card-title {
+    color: var(--color-accent);
+  }
+
+  /* ---- Breaking news ticker ---- */
+  @keyframes ticker-scroll {
+    0%   { transform: translateX(100%); }
+    100% { transform: translateX(-100%); }
+  }
+  .ticker-content {
+    animation: ticker-scroll 30s linear infinite;
+    white-space: nowrap;
+  }
+  .ticker-content:hover {
+    animation-play-state: paused;
+  }
+
+  /* ---- Section headings with ornamental line ---- */
+  .section-heading {
+    @apply flex items-center gap-3 mb-4;
+  }
+  .section-heading h2 {
+    @apply text-xl font-bold;
+    font-family: var(--font-noto-serif-bengali), serif;
+  }
+  .section-heading::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--color-divider);
+  }
+  .section-heading::before {
+    content: '';
+    width: 3px;
+    height: 1.2rem;
+    background: var(--color-accent);
+    border-radius: 1px;
+  }
+
+  /* ---- Rich text post body ---- */
+  .post-body {
+    font-family: var(--font-noto-serif-bengali), serif;
+    font-size: 1.0625rem;
+    line-height: 1.85;
+    color: var(--color-ink-light);
+  }
+  .post-body h2 {
+    @apply text-2xl font-bold mt-10 mb-4;
+    border-bottom: 2px solid var(--color-border);
+    padding-bottom: 0.5rem;
+  }
+  .post-body h3 {
+    @apply text-xl font-bold mt-8 mb-3;
+  }
+  .post-body p {
+    @apply mb-5;
+  }
+  .post-body blockquote {
+    border-left: 4px solid var(--color-accent);
+    background: var(--color-paper-dark);
+    padding: 1rem 1.5rem;
+    margin: 1.5rem 0;
+    font-style: italic;
+    font-size: 1.125rem;
+  }
+  .post-body img {
+    @apply rounded-lg w-full my-6;
+  }
+  .post-body ul {
+    @apply list-disc list-inside mb-4 space-y-1;
+  }
+  .post-body ol {
+    @apply list-decimal list-inside mb-4 space-y-1;
+  }
+  .post-body a {
+    color: var(--color-accent);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  /* ---- Sidebar widget ---- */
+  .sidebar-widget {
+    @apply bg-white rounded-lg border border-[var(--color-border)] overflow-hidden mb-5;
+  }
+  .sidebar-widget-header {
+    @apply px-4 py-3 border-b border-[var(--color-border)] flex items-center gap-2;
+    background: var(--color-paper-dark);
+  }
+  .sidebar-widget-header h3 {
+    @apply text-sm font-bold uppercase tracking-wider;
+    font-family: var(--font-hind-siliguri), sans-serif;
+    color: var(--color-ink);
+    letter-spacing: 0.08em;
+  }
+  .sidebar-widget-header::before {
+    content: '';
+    display: block;
+    width: 3px;
+    height: 14px;
+    background: var(--color-accent);
+    border-radius: 1px;
+  }
+
+  /* ---- Like button animation ---- */
+  @keyframes like-pop {
+    0%   { transform: scale(1); }
+    50%  { transform: scale(1.3); }
+    100% { transform: scale(1); }
+  }
+  .like-pop {
+    animation: like-pop 0.3s ease;
+  }
+}
+
+@layer utilities {
+  /* Scrollbar styling */
+  .scrollbar-thin::-webkit-scrollbar { width: 4px; height: 4px; }
+  .scrollbar-thin::-webkit-scrollbar-track { background: transparent; }
+  .scrollbar-thin::-webkit-scrollbar-thumb { background: var(--color-divider); border-radius: 2px; }
+}
