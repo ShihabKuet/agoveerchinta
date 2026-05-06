@@ -255,6 +255,17 @@ export default function EditorPage() {
                 <div><p className="text-sm font-bengali-sans font-medium text-ink">ব্রেকিং নিউজ</p><p className="text-xs text-ink-muted">হেডারের টিকারে দেখাবে</p></div>
               </label>
             </div>
+
+            {/* Poll section */}
+            <div>
+              <label className="block text-xs font-bengali-sans font-semibold text-ink-muted mb-1.5 uppercase tracking-wider">পোল (ঐচ্ছিক)</label>
+              <p className="text-xs text-ink-muted font-bengali-sans mb-2">পোস্ট প্রকাশের পর Supabase → polls টেবিল থেকে পোল যোগ করুন।</p>
+              <div className="bg-paper-dark rounded-lg p-3 text-xs font-bengali-sans text-ink-muted space-y-1">
+                <p>১. polls টেবিলে post_id দিয়ে row যোগ করুন</p>
+                <p>২. poll_options টেবিলে options যোগ করুন</p>
+                <p>৩. পোস্ট পেজে স্বয়ংক্রিয়ভাবে দেখাবে</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>

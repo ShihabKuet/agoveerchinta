@@ -184,6 +184,31 @@
   .like-pop {
     animation: like-pop 0.3s ease;
   }
+  /* ---- Poetry body ---- */
+  .poetry-body {
+    font-family: var(--font-noto-serif-bengali), serif;
+    font-size: 1.125rem;
+    line-height: 2.1;
+    color: var(--color-ink-light);
+    text-align: center;
+  }
+  .poetry-body p {
+    @apply mb-1;
+    white-space: pre-wrap;
+  }
+  .poetry-body p:empty {
+    @apply mb-5;
+  }
+  .poetry-body h2 {
+    @apply text-xl font-bold mt-8 mb-3 text-center;
+  }
+  .poetry-body h3 {
+    @apply text-lg font-semibold mt-6 mb-2 text-center;
+  }
+
+  /* ---- Book review stars ---- */
+  .star-filled { color: #f59e0b; }
+  .star-empty  { color: #d4cec4; }
 }
 
 @layer utilities {

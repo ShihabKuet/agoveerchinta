@@ -5,6 +5,9 @@ import { getPostBySlug, getRelatedPosts } from '@/lib/db/posts'
 import { formatBengaliDate, readingTimeLabel, absoluteUrl, POST_TYPE_LABELS } from '@/lib/utils'
 import PostCard from '@/components/post/PostCard'
 import PostBody from '@/components/post/PostBody'
+import PoetryRenderer from '@/components/post/PoetryRenderer'
+import StarRating from '@/components/post/StarRating'
+import PollWidget from '@/components/interactions/PollWidget'
 import LikeButton from '@/components/interactions/LikeButton'
 import ShareButtons from '@/components/interactions/ShareButtons'
 import CommentSection from '@/components/interactions/CommentSection'
@@ -165,10 +168,27 @@ export default async function PostPage({ params }: Props) {
         </figure>
       )}
 
-      {/* ---- Post Body ---- */}
+      {/* ---- Post Body — type-aware rendering ---- */}
       <div className="mb-8">
-        <PostBody content={post.body} />
+        {post.post_type === 'poem'
+          ? <PoetryRenderer content={post.body} />
+          : <PostBody content={post.body} />
+        }
       </div>
+
+      {/* ---- Book review star rating ---- */}
+      {post.post_type === 'book_review' && post.excerpt && (() => {
+        const match = post.excerpt.match(/★(\d)/)
+        return match ? (
+          <div className="mb-6 p-4 bg-amber-50 border border-amber-200 rounded-xl">
+            <p className="font-bengali-sans text-xs font-semibold text-ink-muted mb-2 uppercase tracking-wider">রেটিং</p>
+            <StarRating rating={parseInt(match[1])} />
+          </div>
+        ) : null
+      })()}
+
+      {/* ---- Poll widget (if post has a poll) ---- */}
+      <PollWidget postId={post.id} />
 
       {/* ---- Tags ---- */}
       {post.tags && post.tags.length > 0 && (
