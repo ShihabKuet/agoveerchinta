@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { PenSquare, FileText, Home } from 'lucide-react'
+import { PenSquare, FileText, Home, Grid3X3 } from 'lucide-react'
 import LogoutButton from '@/components/admin/LogoutButton'
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
@@ -22,9 +22,10 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
         {/* Nav links */}
         <div className="flex-1 p-3 space-y-1">
           {[
-            { label: 'ড্যাশবোর্ড', href: '/admin',        icon: Home },
-            { label: 'নতুন লেখা',  href: '/admin/editor',  icon: PenSquare },
-            { label: 'সব লেখা',    href: '/admin/manage',  icon: FileText },
+            { label: 'ড্যাশবোর্ড', href: '/admin',            icon: Home },
+            { label: 'নতুন লেখা',  href: '/admin/editor',      icon: PenSquare },
+            { label: 'সব লেখা',    href: '/admin/manage',      icon: FileText },
+            { label: 'বিভাগসমূহ',  href: '/admin/categories',  icon: Grid3X3 },
           ].map(({ label, href, icon: Icon }) => (
             <Link
               key={href}
