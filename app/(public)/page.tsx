@@ -83,7 +83,7 @@ export default async function HomePage() {
           HORIZONTAL STRIP — Latest 5 from each major category
           Only show categories that have posts
           ============================================================ */}
-      {categories.slice(0, 4).map((category) => (
+      {categories.map((category) => (
         <CategorySection key={category.id} categorySlug={category.slug} categoryName={category.name} color={category.color} />
       ))}
 
