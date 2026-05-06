@@ -21,7 +21,7 @@ export default function ManagePosts() {
     setLoading(true)
     let query = supabase
       .from('posts')
-      .select('*, category:categories(name, color, slug), author:profiles(username, full_name)')
+      .select('*, category:categories(name, color, slug), author:profiles!author_id(username, full_name)')
       .order('created_at', { ascending: false })
 
     if (filter !== 'all') {
