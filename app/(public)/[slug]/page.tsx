@@ -4,6 +4,7 @@ import { Metadata } from 'next'
 import { getPostBySlug, getRelatedPosts } from '@/lib/db/posts'
 import { formatBengaliDate, readingTimeLabel, absoluteUrl, POST_TYPE_LABELS } from '@/lib/utils'
 import PostCard from '@/components/post/PostCard'
+import PostBody from '@/components/post/PostBody'
 import LikeButton from '@/components/interactions/LikeButton'
 import ShareButtons from '@/components/interactions/ShareButtons'
 import CommentSection from '@/components/interactions/CommentSection'
@@ -165,17 +166,9 @@ export default async function PostPage({ params }: Props) {
       )}
 
       {/* ---- Post Body ---- */}
-      {/* The Tiptap JSON is rendered here via a client component */}
-      <div
-        className="post-body mb-8"
-        dangerouslySetInnerHTML={{
-          // Tiptap JSON to HTML rendering is done in the API in production
-          // For v1.0 we store and display body_text as a placeholder
-          __html: post.body_text
-            ? post.body_text.replace(/\n/g, '<br/>')
-            : '<p class="text-ink-muted">বিষয়বস্তু লোড হচ্ছে...</p>',
-        }}
-      />
+      <div className="mb-8">
+        <PostBody content={post.body} />
+      </div>
 
       {/* ---- Tags ---- */}
       {post.tags && post.tags.length > 0 && (
