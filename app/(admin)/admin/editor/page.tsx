@@ -65,6 +65,10 @@ export default function EditorPage() {
   const [message, setMessage] = useState('')
   const [settingsOpen, setSettingsOpen] = useState(false)
 
+  // Poll state
+  const [pollQuestion, setPollQuestion] = useState('')
+  const [pollOptions, setPollOptions] = useState(['', ''])
+
   const editor = useEditor({
     extensions: [
       StarterKit.configure({ heading: { levels: [1, 2, 3] } }),
@@ -114,8 +118,24 @@ export default function EditorPage() {
         is_featured: isFeatured,
         is_breaking: isBreaking,
         published_at: saveStatus === 'published' ? new Date().toISOString() : null,
-      }).select('slug').single()
+      }).select('id, slug').single()
       if (error) throw error
+
+      // Save poll if question and at least 2 options are filled
+      const validOptions = pollOptions.filter(o => o.trim())
+      if (pollQuestion.trim() && validOptions.length >= 2 && data?.id) {
+        const { data: poll, error: pollError } = await supabase
+          .from('polls')
+          .insert({ post_id: data.id, question: pollQuestion.trim(), is_active: true })
+          .select('id')
+          .single()
+        if (!pollError && poll) {
+          await supabase.from('poll_options').insert(
+            validOptions.map((label, i) => ({ poll_id: poll.id, label: label.trim(), sort_order: i }))
+          )
+        }
+      }
+
       setMessage(saveStatus === 'published' ? '✓ প্রকাশিত হয়েছে!' : '✓ খসড়া সংরক্ষিত।')
       setStatus(saveStatus)
       if (saveStatus === 'published' && data?.slug) setTimeout(() => router.push(`/${data.slug}`), 1200)
@@ -256,15 +276,54 @@ export default function EditorPage() {
               </label>
             </div>
 
-            {/* Poll section */}
+            {/* Poll builder */}
             <div>
-              <label className="block text-xs font-bengali-sans font-semibold text-ink-muted mb-1.5 uppercase tracking-wider">পোল (ঐচ্ছিক)</label>
-              <p className="text-xs text-ink-muted font-bengali-sans mb-2">পোস্ট প্রকাশের পর Supabase → polls টেবিল থেকে পোল যোগ করুন।</p>
-              <div className="bg-paper-dark rounded-lg p-3 text-xs font-bengali-sans text-ink-muted space-y-1">
-                <p>১. polls টেবিলে post_id দিয়ে row যোগ করুন</p>
-                <p>২. poll_options টেবিলে options যোগ করুন</p>
-                <p>৩. পোস্ট পেজে স্বয়ংক্রিয়ভাবে দেখাবে</p>
+              <label className="block text-xs font-bengali-sans font-semibold text-ink-muted mb-2 uppercase tracking-wider">পোল (ঐচ্ছিক)</label>
+              <input
+                value={pollQuestion}
+                onChange={e => setPollQuestion(e.target.value)}
+                placeholder="প্রশ্ন লিখুন..."
+                lang="bn"
+                className="w-full px-3 py-2 text-sm font-bengali-sans border border-[var(--color-border)] rounded-lg focus:outline-none focus:border-accent mb-2"
+              />
+              <div className="space-y-2">
+                {pollOptions.map((opt, i) => (
+                  <div key={i} className="flex gap-1.5">
+                    <input
+                      value={opt}
+                      onChange={e => {
+                        const updated = [...pollOptions]
+                        updated[i] = e.target.value
+                        setPollOptions(updated)
+                      }}
+                      placeholder={`বিকল্প ${i + 1}`}
+                      lang="bn"
+                      className="flex-1 px-3 py-2 text-sm font-bengali-sans border border-[var(--color-border)] rounded-lg focus:outline-none focus:border-accent"
+                    />
+                    {pollOptions.length > 2 && (
+                      <button
+                        type="button"
+                        onClick={() => setPollOptions(pollOptions.filter((_, idx) => idx !== i))}
+                        className="p-2 text-ink-muted hover:text-red-500 hover:bg-red-50 rounded-lg transition-colors"
+                      >
+                        <X size={14} />
+                      </button>
+                    )}
+                  </div>
+                ))}
               </div>
+              {pollOptions.length < 6 && (
+                <button
+                  type="button"
+                  onClick={() => setPollOptions([...pollOptions, ''])}
+                  className="mt-2 w-full py-1.5 text-xs font-bengali-sans font-medium text-ink-muted border border-dashed border-[var(--color-border)] rounded-lg hover:border-accent hover:text-accent transition-colors"
+                >
+                  + বিকল্প যোগ করুন
+                </button>
+              )}
+              {pollQuestion.trim() && pollOptions.filter(o => o.trim()).length >= 2 && (
+                <p className="mt-2 text-xs text-green-600 font-bengali-sans">✓ পোল যোগ করা হবে</p>
+              )}
             </div>
           </div>
         </div>
