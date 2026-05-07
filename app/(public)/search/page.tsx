@@ -6,7 +6,7 @@ import { toBengaliNumerals } from '@/lib/utils'
 import { Search } from 'lucide-react'
 
 export const metadata: Metadata = {
-  title: 'অনুসন্ধান — আগোভীর চিন্তা',
+  title: 'অনুসন্ধান — অগভীর চিন্তা',
 }
 
 interface Props {

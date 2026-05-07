@@ -13,14 +13,14 @@ export default function Footer() {
           {/* About column */}
           <div className="md:col-span-2">
             <h3 className="font-bengali-serif text-2xl font-bold mb-3 text-white">
-              আগোভীর চিন্তা
+              অগভীর চিন্তা
             </h3>
             <p className="text-sm font-bengali-sans text-white/60 leading-relaxed mb-4">
               বাংলায় লেখার একটি বিশেষ জায়গা। সাহিত্য, রাজনীতি, বিজ্ঞান,
               প্রযুক্তিসহ জীবনের নানা বিষয়ে মুক্ত চিন্তার আড্ডা।
             </p>
             <p className="text-xs text-white/40 font-bengali-sans">
-              বাংলায় ভাবি, বাংলায় লিখি
+              ইহা আমার অবিকাশিত চিন্তার বহিঃপ্রকাশ মাত্র 
             </p>
           </div>
 
@@ -81,7 +81,7 @@ export default function Footer() {
       <div className="border-t border-white/10">
         <div className="max-w-site mx-auto px-4 py-4 flex flex-col md:flex-row items-center justify-between gap-2">
           <p className="text-xs text-white/40 font-bengali-sans">
-            © {year} আগোভীর চিন্তা। সর্বস্বত্ব সংরক্ষিত।
+            © {year} অগভীর চিন্তা। সর্বস্বত্ব সংরক্ষিত।
           </p>
           <div className="flex gap-4 text-xs text-white/40 font-bengali-sans">
             <Link href="/about" className="hover:text-white/70 transition-colors">সম্পর্কে</Link>

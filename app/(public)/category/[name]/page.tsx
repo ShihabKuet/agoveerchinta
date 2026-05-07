@@ -16,7 +16,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const category = await getCategoryBySlug(params.name)
   if (!category) return {}
   return {
-    title: `${category.name} — আগোভীর চিন্তা`,
+    title: `${category.name} — অগভীর চিন্তা`,
     description: `${category.name} বিভাগের সকল লেখা পড়ুন।`,
   }
 }

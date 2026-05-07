@@ -36,7 +36,7 @@ export default function LoginPage() {
         {/* Masthead */}
         <div className="text-center mb-8">
           <h1 className="font-bengali-serif text-4xl font-extrabold text-ink mb-1">
-            আগোভীর চিন্তা
+            অগভীর চিন্তা
           </h1>
           <div className="h-px bg-[var(--color-divider)] my-3" />
           <p className="font-bengali-sans text-sm text-ink-muted">

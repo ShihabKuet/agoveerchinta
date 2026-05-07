@@ -6,7 +6,7 @@ import PostCard from '@/components/post/PostCard'
 import PostGrid from '@/components/post/PostGrid'
 
 export const metadata: Metadata = {
-  title: 'আগোভীর চিন্তা — বাংলা ব্লগ',
+  title: 'অগভীর চিন্তা — বাংলা ব্লগ',
   description: 'সাহিত্য, রাজনীতি, বিজ্ঞান, প্রযুক্তি ও জীবনের নানা বিষয়ে বাংলায় লেখা।',
 }
 

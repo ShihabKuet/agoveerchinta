@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { PenSquare, FileText, Eye, Heart } from 'lucide-react'
 
 export const metadata: Metadata = {
-  title: 'ড্যাশবোর্ড — আগোভীর চিন্তা',
+  title: 'ড্যাশবোর্ড — অগভীর চিন্তা',
 }
 
 export default function AdminDashboard() {
@@ -12,7 +12,7 @@ export default function AdminDashboard() {
       <div className="flex items-center justify-between mb-8">
         <div>
           <h1 className="font-bengali-serif text-3xl font-bold text-ink">ড্যাশবোর্ড</h1>
-          <p className="font-bengali-sans text-ink-muted mt-1">আগোভীর চিন্তা — লেখক প্যানেল</p>
+          <p className="font-bengali-sans text-ink-muted mt-1">অগভীর চিন্তা — লেখক প্যানেল</p>
         </div>
         <Link
           href="/admin/editor"

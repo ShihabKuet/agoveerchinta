@@ -69,13 +69,13 @@ export default function Header({ breakingNews = [] }: HeaderProps) {
             className="font-bengali-serif text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-ink leading-none"
             style={{ letterSpacing: '-0.02em' }}
           >
-            আগোভীর চিন্তা
+            অগভীর চিন্তা
           </h1>
 
           <div className="flex items-center gap-3 mt-1">
             <div className="flex-1 h-px bg-[var(--color-ink)]" />
             <p className="text-xs font-bengali-sans text-ink-muted italic tracking-widest uppercase px-2">
-              বাংলায় ভাবি, বাংলায় লিখি
+              ইহা আমার অবিকাশিত চিন্তার বহিঃপ্রকাশ মাত্র 
             </p>
             <div className="flex-1 h-px bg-[var(--color-ink)]" />
           </div>

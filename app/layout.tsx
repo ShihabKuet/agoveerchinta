@@ -33,16 +33,16 @@ const playfair = Playfair_Display({
 // ---- Site-wide SEO metadata ----
 export const metadata: Metadata = {
   title: {
-    default: 'আগোভীর চিন্তা',
-    template: '%s | আগোভীর চিন্তা',  // Each page can set its own title
+    default: 'অগভীর চিন্তা',
+    template: '%s | অগভীর চিন্তা',  // Each page can set its own title
   },
   description: 'বাংলা ভাষায় সাহিত্য, রাজনীতি, বিজ্ঞান, প্রযুক্তি ও আরও অনেক বিষয়ে লেখার একটি বিশেষ জায়গা।',
   keywords: ['বাংলা ব্লগ', 'সাহিত্য', 'রাজনীতি', 'বিজ্ঞান', 'প্রযুক্তি', 'Bengali blog'],
-  authors: [{ name: 'আগোভীর চিন্তা' }],
+  authors: [{ name: 'অগভীর চিন্তা' }],
   openGraph: {
     type: 'website',
     locale: 'bn_BD',
-    siteName: 'আগোভীর চিন্তা',
+    siteName: 'অগভীর চিন্তা',
   },
 }
 

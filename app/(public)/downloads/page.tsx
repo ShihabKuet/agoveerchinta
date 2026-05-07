@@ -5,7 +5,7 @@ import { formatBengaliDate, toBengaliNumerals } from '@/lib/utils'
 import { Download, FileText, Eye } from 'lucide-react'
 
 export const metadata: Metadata = {
-  title: 'ডাউনলোড — আগোভীর চিন্তা',
+  title: 'ডাউনলোড — অগভীর চিন্তা',
   description: 'বিনামূল্যে ডাউনলোডযোগ্য সকল ফাইল ও রচনা।',
 }
 

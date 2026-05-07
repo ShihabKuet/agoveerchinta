@@ -47,7 +47,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const result = await getTagWithPosts(params.slug)
   if (!result) return {}
   return {
-    title: `#${result.tag.name} — আগোভীর চিন্তা`,
+    title: `#${result.tag.name} — অগভীর চিন্তা`,
     description: `"${result.tag.name}" ট্যাগের সকল লেখা।`,
   }
 }

@@ -13,9 +13,9 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
         <div className="p-4 border-b border-white/10">
           <Link href="/">
             <p className="font-bengali-serif text-white font-bold text-sm hidden md:block leading-tight">
-              আগোভীর<br />চিন্তা
+              অগভীর চিন্তা<br />চিন্তা
             </p>
-            <p className="font-bengali-serif text-white font-bold text-lg md:hidden">আ</p>
+            <p className="font-bengali-serif text-white font-bold text-lg md:hidden">অ</p>
           </Link>
         </div>
 
